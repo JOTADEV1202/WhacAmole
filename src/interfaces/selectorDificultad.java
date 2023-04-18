@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Modelos.Dificultad;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -16,34 +19,28 @@ import javax.swing.JButton;
 public class selectorDificultad extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					selectorDificultad frame = new selectorDificultad();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Modelos.ConfigJuego configuracion;
 
 	/**
 	 * Create the frame.
 	 */
-	public selectorDificultad() {
+	public selectorDificultad(Modelos.ConfigJuego config) {
+		configuracion = config;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setTitle("Selector de dificultad");
+		
+		JLabel lbBienvenido = new JLabel("");
+		lbBienvenido.setForeground(new Color(255, 255, 255));
+		lbBienvenido.setFont(new Font("MS UI Gothic", Font.BOLD, 16));
+		lbBienvenido.setBounds(123, 124, 306, 34);
+		contentPane.add(lbBienvenido);
 		
 		JButton botonDificil = new JButton("Dificil");
 		botonDificil.setFont(new Font("MS UI Gothic", Font.BOLD, 12));
@@ -53,9 +50,10 @@ public class selectorDificultad extends JFrame {
 		botonDificil.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-		    nivelDificil bDificil = new  nivelDificil();
-		    bDificil.setVisible(true);
-		    dispose();
+				configuracion.setDificultad(Dificultad.DIFICIL);
+			    nivelDificil bDificil = new  nivelDificil(configuracion);
+			    bDificil.setVisible(true);
+			    dispose();
 		  }	
 		});
 		
@@ -67,9 +65,10 @@ public class selectorDificultad extends JFrame {
 		botonMedio.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-		    nivelMedio bMedio = new  nivelMedio();
-		    bMedio.setVisible(true);
-		    dispose();
+				configuracion.setDificultad(Dificultad.MEDIO);
+			    nivelMedio bMedio = new  nivelMedio(configuracion);
+			    bMedio.setVisible(true);
+			    dispose();
 		  }	
 		});
 		
@@ -81,9 +80,10 @@ public class selectorDificultad extends JFrame {
 		botonFacil.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-		    nivelFacil bFacil = new  nivelFacil();
-		    bFacil.setVisible(true);
-		    dispose();
+				configuracion.setDificultad(Dificultad.FACIL);
+				nivelFacil bFacil = new  nivelFacil(configuracion);
+			    bFacil.setVisible(true);
+			    dispose();
 		  }	
 		});
 		
@@ -98,5 +98,7 @@ public class selectorDificultad extends JFrame {
 		Fondo.setIcon(new ImageIcon(InicioJuego.class.getResource("/imagenes/fondo.jpg")));
 		Fondo.setBounds(0, 10, 586, 453);
 		contentPane.add(Fondo);
+		
+		lbBienvenido.setText("Bienvenido " + configuracion.getNombreJugador1() + ", seleccione la dificutltad");
 	}
 }

@@ -12,27 +12,14 @@ import java.awt.Font;
 public class nivelMedio extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					nivelMedio frame = new nivelMedio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Modelos.ConfigJuego configuracion;
 
 	/**
 	 * Create the frame.
 	 */
-	public nivelMedio() {
+	public nivelMedio(Modelos.ConfigJuego config) {
+		configuracion = config;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
@@ -46,7 +33,8 @@ public class nivelMedio extends JFrame {
 		panel.setBounds(0, 0, 586, 81);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+		setTitle("Nivel medio");
+		setLocationRelativeTo(null);
 		JLabel LabelTiempo = new JLabel("Tiempo");
 		LabelTiempo.setFont(new Font("MS UI Gothic", Font.BOLD, 12));
 		LabelTiempo.setBounds(10, 10, 45, 13);

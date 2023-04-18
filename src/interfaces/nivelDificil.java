@@ -12,27 +12,15 @@ import java.awt.Font;
 public class nivelDificil extends JFrame {
 
 	private JPanel contentPane;
+	private Modelos.ConfigJuego configuracion;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					nivelDificil frame = new nivelDificil();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public nivelDificil() {
+	public nivelDificil(Modelos.ConfigJuego config) {
+		configuracion = config;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
 		contentPane = new JPanel();
@@ -40,7 +28,8 @@ public class nivelDificil extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setTitle("Nivel Dificil");
+		setLocationRelativeTo(null);
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(204, 0, 0));
 		panel.setBounds(0, 0, 586, 86);
